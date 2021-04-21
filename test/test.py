@@ -14,9 +14,9 @@ def main( ):
 	result |= _testModuleGeneration( )
 
 	if result:
-		print("FAIL")
+		print( "FAIL" )
 	else:
-		print("PASS")
+		print( "PASS" )
 
 	return result
 
