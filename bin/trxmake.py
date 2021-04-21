@@ -19,7 +19,7 @@ class C_ModuleGenerator:
 
 		self.modName = "test"
 		self.parentFolder = parentFolder + "/" + modName
-		self.dirPath = self.parentFolder + '/' + self.modName + '/'
+		self.dirPath = self.parentFolder + '/' + self.modName + '/
 
 		self._MakeDirs( )
 		self._WriteTemplates( )
