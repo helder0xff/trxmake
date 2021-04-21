@@ -18,7 +18,7 @@ def main( ):
 	else:
 		print( "PASS" )
 
-	system.exit( -1 )
+	sys.exit( -1 )
 
 def _testModuleGeneration( ):
 	module = "mod1"
