@@ -39,10 +39,9 @@ def _testModuleGeneration( ):
 	obtainedList = glob.glob( "./" + module + "/**", recursive = True )
 	os.system( "rm -rf ./%s"%( module ) )
 
-	print(expectedList)
-	print('')
-	print(obtainedList)
-
+	expectedList.sort()
+	obtainedList.sort()
+	
 	result = FAIL
 	if ( expectedList == obtainedList ):
 		result = PASS
