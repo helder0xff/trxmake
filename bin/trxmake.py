@@ -1,5 +1,6 @@
 import os
 from datetime import date
+import argparse
 
 class C_ModuleGenerator:
 	def __init__( self, modName = None, parentFolder = '.' ):
@@ -104,5 +105,33 @@ class C_ModuleGenerator:
 				self.modName )
 
 		return template		
+
+parser = argparse.ArgumentParser( description = ''' TRX build app ''' )
+parser.add_argument( 	'-c',
+						'--command',
+						type = str,
+						choices = [ "genmod" ],
+						default = None,
+						help = 'What trxmake must do.'
+						)
+parser.add_argument( 	'-m',
+						'--module',
+						type = str,
+						default = None,
+						help = 'Module name.'
+						)
+parser.add_argument(	'-p',
+						'--parent',
+						type = str,
+						default = './',
+						help = 'Parent folder of the module.'
+					)
+args = parser.parse_args( )
+def main( args ):
+	if "genmod" == args.command:
+		modGen = C_ModuleGenerator( modName = args.module, parentFolder = args.parent )
+		modGen.GenerateModule( )
+
+main( args )
 
 ### end of file ###
