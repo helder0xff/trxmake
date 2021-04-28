@@ -133,6 +133,8 @@ def main( args ):
 	if "genmod" == args.command:
 		modGen = C_ModuleGenerator( modName = args.module, parentFolder = args.parent )
 		modGen.GenerateModule( )
+	else:
+		parser.print_help()
 
 main( args )
 
