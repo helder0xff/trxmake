@@ -9,7 +9,7 @@ parser.add_argument( 	'-f',
 						'--folder',
 						type = str,
 						default = '~/trx/',
-						help = 'Installation folder.'
+						help = 'Installation folder. (Absolute path)'
 					)
 args = parser.parse_args( )
 
