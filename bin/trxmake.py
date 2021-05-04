@@ -136,6 +136,7 @@ def main( args ):
 	else:
 		parser.print_help()
 
-main( args )
+if __name__ == "__main__":
+	main( args )
 
 ### end of file ###

@@ -1,9 +1,12 @@
 import os, sys, glob
+from filecmp import cmp
+
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
+bindir = parentdir + "/bin/"
 
-sys.path.append(parentdir)
-from bin import trxmake
+sys.path.append(bindir)
+from trxmake import C_ModuleGenerator
 
 PASS = 0
 FAIL = -1
@@ -12,7 +15,7 @@ def main( ):
 	result = PASS
 
 	result |= _testModuleGeneration( )
-
+	result |= _testTrxmakeInstallation( )
 	if result:
 		print( "FAIL" )
 	else:
@@ -24,7 +27,7 @@ def _testModuleGeneration( ):
 	module = "mod1"
 	os.system( "rm -rf ./%s"%( module ) )
 
-	modGen = trxmake.C_ModuleGenerator( modName = module, parentFolder = "./" )
+	modGen = C_ModuleGenerator( modName = module, parentFolder = "./" )
 	modGen.GenerateModule( )
 
 	expectedList = ['./mod1/',												\
@@ -45,6 +48,20 @@ def _testModuleGeneration( ):
 	result = FAIL
 	if ( expectedList == obtainedList ):
 		result = PASS
+
+	return result
+
+def _testTrxmakeInstallation( ):
+	installationFolder = os.getcwd() + "/test/trxmake_installation_folder/"
+
+	os.system( "rm -rf ./{folder}".format( folder = installationFolder ) )
+	os.system( "echo y | ./install/install.py -f {folder}".format( folder = installationFolder ) )
+
+	result = FAIL
+	if True == cmp( installationFolder + "/trxmake/bin/trxmake.py", bindir + "/trxmake.py" ):
+		result = PASS
+	
+	os.system( "rm -rf {folder}".format( folder = installationFolder ) )
 
 	return result
 

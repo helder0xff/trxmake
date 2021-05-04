@@ -3,13 +3,12 @@
 import os
 import argparse
 
-parser = argparse.ArgumentParser( description = ''' TRX build app ''' )
+parser = argparse.ArgumentParser( description = ''' TRX installation. ''' )
 
 parser.add_argument( 	'-f',
 						'--folder',
 						type = str,
-						choices = [ "genmod" ],
-						default = '~/',
+						default = '~/trx/',
 						help = 'Installation folder.'
 					)
 args = parser.parse_args( )
@@ -26,11 +25,11 @@ def main( args ):
 			quit()
 
 	os.system("mkdir -p " + installationFolder )
-	CWD = os.getcwd()
+	CWD = os.getcwd()	
 	THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 	os.chdir(THIS_DIR)
-	os.system("cp ../bin/trxmake.py " +	installationFolder + "trxmake_v2.py")
-	os.system("chmod +x " + installationFolder + "trxmake_v2.py")
+	os.system("cp ../bin/trxmake.py " +	installationFolder)
+	os.system("chmod +x " + installationFolder + "trxmake.py")
 	os.chdir(CWD)	
 
 main( args )
