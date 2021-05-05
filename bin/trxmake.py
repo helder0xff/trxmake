@@ -49,7 +49,7 @@ class C_ModuleGenerator:
 		file.close( )		
 
 	def _GenerateHeaderTemplate( self ):
-		template = 							\
+		auxTemplate =						\
 			"""/**							\
 			\n * @file\t%s.h				\
 			\n * @author\t%s				\
@@ -71,10 +71,15 @@ class C_ModuleGenerator:
 				self.modName.upper( ), 		\
 				self.modName.upper( ) )
 
+		template = ''
+		for line in auxTemplate.splitlines( ):
+			template += line.rstrip( )
+			template += '\n'
+
 		return template
 
 	def _GenerateSourceTemplate( self ):
-		template = 													\
+		auxTemplate = 												\
 			"""/**													\
 			\n * @file\t%s.c										\
 			\n * @author\t%s										\
@@ -105,6 +110,11 @@ class C_ModuleGenerator:
 				os.environ[ 'USER' ],								\
 				date.today(), 										\
 				self.modName )
+
+		template = ''
+		for line in auxTemplate.splitlines( ):
+			template += line.rstrip( )
+			template += '\n'
 
 		return template		
 
