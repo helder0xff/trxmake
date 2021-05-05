@@ -20,7 +20,7 @@ class C_ModuleGenerator:
 		parentFolder = self.parentFolder
 		dirPath = self.dirPath
 
-		self.modName = "test"
+		self.modName =  modName + "_test"
 		self.parentFolder = parentFolder + "/" + modName
 		self.dirPath = self.parentFolder + '/' + self.modName + '/'
 
