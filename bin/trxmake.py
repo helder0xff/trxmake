@@ -108,7 +108,7 @@ class C_ModuleGenerator:
 
 		return template		
 
-parser = argparse.ArgumentParser( description = ''' TRX build app ''' )
+parser = argparse.ArgumentParser( description = ''' trxmake 1.0 :: TRX build app. ''' )
 parser.add_argument( 	'-c',
 						'--command',
 						type = str,
