@@ -55,7 +55,7 @@ def _testTrxmakeInstallation( ):
 	installationFolder = os.getcwd() + "/test/trxmake_installation_folder/"
 
 	os.system( "rm -rf ./{folder}".format( folder = installationFolder ) )
-	os.system( "echo y | ./install/install.py -f {folder}".format( folder = installationFolder ) )
+	os.system( "echo y | ./install/install.py -f {folder}  > /dev/null".format( folder = installationFolder ) )
 
 	result = FAIL
 	if True == cmp( installationFolder + "/trxmake/bin/trxmake.py", bindir + "/trxmake.py" ):
