@@ -67,7 +67,7 @@ def _testTrxmakeInstallation( ):
 	return result
 
 def _testTrxmakeBuild( ):
-	os.system( "python3 ./bin/trxmake.py -c build -f /mnt/workspace/TRX/tools/trxmake/test/screws/screw/screw_test/build/trxmake.json > /dev/null" )
+	os.system( "python3 ./bin/trxmake.py -c build -f ./test/screws/screw/screw_test/build/trxmake.json > /dev/null" )
 	result = FAIL
 	if "app.elf" == os.system( "ls test/screws/screw/screw_test/build/bin/ > /dev/null" ):
 		result = PASS
