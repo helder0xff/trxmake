@@ -16,7 +16,8 @@ def main( ):
 
 	result |= _testModuleGeneration( )
 	result |= _testTrxmakeInstallation( )
-	if result:
+	result |= _testTrxmakeBuild( )
+	if PASS == result:
 		print( "FAIL" )
 	else:
 		print( "PASS" )
@@ -62,6 +63,14 @@ def _testTrxmakeInstallation( ):
 		result = PASS
 	
 	os.system( "rm -rf {folder}".format( folder = installationFolder ) )
+
+	return result
+
+def _testTrxmakeBuild( ):
+	os.system( "python3 ./bin/trxmake.py -c build -f /mnt/workspace/TRX/tools/trxmake_v2/test/screws/screw/screw_test/build/trxmake.json > /dev/null" )
+	result = FAIL
+	if "app.elf" == os.system( "ls test/screws/screw/screw_test/build/bin/ > /dev/null" ):
+		result = PASS
 
 	return result
 
