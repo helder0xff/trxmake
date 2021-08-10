@@ -1,1 +1,6 @@
 *.pyc
+Makefile
+*.d
+*.o
+*.elf
+*.map
