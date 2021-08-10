@@ -1,0 +1,4 @@
+{
+	"modules" : [ 	"/mnt/workspace/TRX/tools/trxmake_v2/test/screws/screw_body",
+					"/mnt/workspace/TRX/tools/trxmake_v2/test/screws/screw_head" ]	
+}
