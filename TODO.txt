@@ -1,2 +1,2 @@
-# Create empty trxmake.json
-# Make possible to enter relative paths onto "modules"
+#1 Create empty trxmake.json
+#2 Make possible to enter relative paths onto "modules"
