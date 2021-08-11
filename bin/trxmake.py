@@ -212,7 +212,7 @@ class Builder:
 		outString += "CFLAGS  = -g -Wall -Werror -std=c99 $(INCS)"
 		if( "HOST" != self.platform ):
 			outString += 														\
-				"""CFLGAS += -cpu={cpu} -m{arch} -march={march}					\
+				"""\nCFLAGS += -mcpu={cpu} -m{arch} -march={march}					\
 				\nCFLAGS += -mfloat-abi={mfloat_abi} -mfpu={mfpu}				\
 				\nCFLAGS += --specs={specs}										\
 				"""																\
