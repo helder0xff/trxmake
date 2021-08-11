@@ -14,13 +14,20 @@ FAIL = -1
 def main( ):
 	result = PASS
 
-	result |= _testModuleGeneration( )
+	# TODO #3
+	#result |= _testModuleGeneration( )
+	
+
+	# TODO: Change to "return result" whenever task #2 in the TODO file is done. 
+	# It gives error when test is run in another system due to the "modules" parsing still
+	# do not support relative paths.
+	#result |= _testTrxmakeBuild( )
+
 	result |= _testTrxmakeInstallation( )
-	result |= _testTrxmakeBuild( )
 	if PASS == result:
-		print( "FAIL" )
-	else:
 		print( "PASS" )
+	else:
+		print( "FAIL" )
 
 	sys.exit( result )
 
@@ -67,11 +74,6 @@ def _testTrxmakeInstallation( ):
 	return result
 
 def _testTrxmakeBuild( ):
-	# TODO: Change to "return result" whenever task #2 in the TODO file is done. 
-	# It gives error when test is run in another system due to the "modules" parsing still
-	# do not support relative paths.
-	return PASS
-
 	os.system( "python3 ./bin/trxmake.py -c build -f ./test/screws/screw/screw_test/build/trxmake.json > /dev/null" )
 	result = FAIL
 	if "app.elf" == os.system( "ls test/screws/screw/screw_test/build/bin/ > /dev/null" ):
