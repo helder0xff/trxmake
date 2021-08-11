@@ -1,3 +1,4 @@
-#1 Create empty trxmake.json
+#1 Create empty trxmake.json with the module generator.
 #2 Make possible to enter relative paths onto "modules".
 #3 Check module generation test.
+#4 Add some printing on failing tests.
