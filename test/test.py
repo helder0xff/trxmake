@@ -76,7 +76,7 @@ def _testTrxmakeInstallation( ):
 def _testTrxmakeBuild( ):
 	os.system( "python3 ./bin/trxmake.py -c build -f ./test/screws/screw/screw_test/build/trxmake.json > /dev/null" )
 	result = FAIL
-	if "app.elf" == os.system( "ls test/screws/screw/screw_test/build/bin/ > /dev/null" ):
+	if True == os.path.isfile( "test/screws/screw/screw_test/build/bin/app.elf" ):
 		result = PASS
 
 	return result
