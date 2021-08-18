@@ -14,11 +14,10 @@ FAIL = -1
 def main( ):
 	result = PASS
 
-	# TODO #3
-	#result |= _testModuleGeneration( )
-	
+	result |= _testModuleGeneration( )
 	result |= _testTrxmakeBuild( )
 	result |= _testTrxmakeInstallation( )
+
 	if PASS == result:
 		print( "PASS" )
 	else:
@@ -37,17 +36,17 @@ def _testModuleGeneration( ):
 					'./mod1/src', './mod1/src/mod1.c',						\
 					'./mod1/build',											\
 					'./mod1/inc', './mod1/inc/mod1.h',						\
-					'./mod1/test',											\
-					'./mod1/test/src', './mod1/test/src/test.c', 			\
-					'./mod1/test/build',									\
-					'./mod1/test/inc', './mod1/test/inc/test.h']
+					'./mod1/mod1_test',											\
+					'./mod1/mod1_test/src', './mod1/mod1_test/src/mod1_test.c', 			\
+					'./mod1/mod1_test/build',									\
+					'./mod1/mod1_test/inc', './mod1/mod1_test/inc/mod1_test.h']
 
 	obtainedList = glob.glob( "./" + module + "/**", recursive = True )
 	os.system( "rm -rf ./%s"%( module ) )
 
 	expectedList.sort()
 	obtainedList.sort()
-	
+
 	result = FAIL
 	if ( expectedList == obtainedList ):
 		result = PASS
