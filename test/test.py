@@ -14,15 +14,13 @@ FAIL = -1
 def main( ):
 	result = PASS
 
-	# TODO #3
-	#result |= _testModuleGeneration( )
 	
-
 	# TODO: Change to "return result" whenever task #2 in the TODO file is done. 
 	# It gives error when test is run in another system due to the "modules" parsing still
 	# do not support relative paths.
 	#result |= _testTrxmakeBuild( )
 
+	result |= _testModuleGeneration( )
 	result |= _testTrxmakeInstallation( )
 	if PASS == result:
 		print( "PASS" )
@@ -38,14 +36,14 @@ def _testModuleGeneration( ):
 	modGen = C_ModuleGenerator( modName = module, parentFolder = "./" )
 	modGen.GenerateModule( )
 
-	expectedList = ['./mod1/',												\
-					'./mod1/src', './mod1/src/mod1.c',						\
-					'./mod1/build',											\
-					'./mod1/inc', './mod1/inc/mod1.h',						\
-					'./mod1/test',											\
-					'./mod1/test/src', './mod1/test/src/test.c', 			\
-					'./mod1/test/build',									\
-					'./mod1/test/inc', './mod1/test/inc/test.h']
+	expectedList = ['./mod1/',															\
+					'./mod1/src', './mod1/src/mod1.c',									\
+					'./mod1/build',	'./mod1/build/trxmake.json',						\
+					'./mod1/inc', './mod1/inc/mod1.h',									\
+					'./mod1/mod1_test',													\
+					'./mod1/mod1_test/src', './mod1/mod1_test/src/mod1_test.c', 		\
+					'./mod1/mod1_test/build', './mod1/mod1_test/build/trxmake.json',	\
+					'./mod1/mod1_test/inc', './mod1/mod1_test/inc/mod1_test.h']
 
 	obtainedList = glob.glob( "./" + module + "/**", recursive = True )
 	os.system( "rm -rf ./%s"%( module ) )
