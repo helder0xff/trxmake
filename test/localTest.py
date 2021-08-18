@@ -32,13 +32,13 @@ def _testModuleGeneration( ):
 	modGen = C_ModuleGenerator( modName = module, parentFolder = "./" )
 	modGen.GenerateModule( )
 
-	expectedList = ['./mod1/',												\
-					'./mod1/src', './mod1/src/mod1.c',						\
-					'./mod1/build',											\
-					'./mod1/inc', './mod1/inc/mod1.h',						\
-					'./mod1/mod1_test',											\
-					'./mod1/mod1_test/src', './mod1/mod1_test/src/mod1_test.c', 			\
-					'./mod1/mod1_test/build',									\
+	expectedList = ['./mod1/',															\
+					'./mod1/src', './mod1/src/mod1.c',									\
+					'./mod1/build',	'./mod1/build/trxmake.json',						\
+					'./mod1/inc', './mod1/inc/mod1.h',									\
+					'./mod1/mod1_test',													\
+					'./mod1/mod1_test/src', './mod1/mod1_test/src/mod1_test.c', 		\
+					'./mod1/mod1_test/build', './mod1/mod1_test/build/trxmake.json',	\
 					'./mod1/mod1_test/inc', './mod1/mod1_test/inc/mod1_test.h']
 
 	obtainedList = glob.glob( "./" + module + "/**", recursive = True )

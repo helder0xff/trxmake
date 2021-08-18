@@ -47,7 +47,28 @@ class C_ModuleGenerator:
 		template = self._GenerateSourceTemplate( )
 		file = open( self.dirPath + "/src/%s.c"%( self.modName ), "w" )
 		file.write( template )
-		file.close( )		
+		file.close( )
+
+		template = self._GenerateTrxmakeTemplate( )
+		file = open( self.dirPath + "/build/%s.json"%( "trxmake" ), "w" )
+		file.write( template )
+		file.close( )
+
+	def _GenerateTrxmakeTemplate( self ):
+		auxTemplate =						\
+			"""{							\
+			\n\t"name": "%s", 				\
+			\n\t"modules" : [ ],			\
+			\n\t"defines" : [ ]				\
+			\n}"""							\
+			%( self.modName )
+
+		template = ''
+		for line in auxTemplate.splitlines( ):
+			template += line.rstrip( )
+			template += '\n'
+
+		return template
 
 	def _GenerateHeaderTemplate( self ):
 		auxTemplate =						\
