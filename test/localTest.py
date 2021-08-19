@@ -29,12 +29,13 @@ def _testModuleGeneration( ):
 	module = "mod1"
 	os.system( "rm -rf ./%s"%( module ) )
 
-	modGen = C_ModuleGenerator( modName = module, parentFolder = "./" )
+	modGen = C_ModuleGenerator( modName = module, parentFolder = "./", platform = "MSP432" )
 	modGen.GenerateModule( )
 
 	expectedList = ['./mod1/',															\
 					'./mod1/src', './mod1/src/mod1.c',									\
 					'./mod1/build',	'./mod1/build/trxmake.json',						\
+					'./mod1/mod1_test/build/MSP432.lds',								\
 					'./mod1/inc', './mod1/inc/mod1.h',									\
 					'./mod1/mod1_test',													\
 					'./mod1/mod1_test/src', './mod1/mod1_test/src/mod1_test.c', 		\
