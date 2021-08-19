@@ -26,7 +26,7 @@ class C_ModuleGenerator:
 		self.dirPath = self.parentFolder + '/' + self.modName + '/'
 
 		self._MakeDirs( )
-		self._WriteTemplates( )
+		self._WriteTemplates( test = True )
 
 		self.modName = modName
 		self.parentFolder = parentFolder
@@ -38,13 +38,13 @@ class C_ModuleGenerator:
 		os.system( "mkdir -p " + self.dirPath + "/inc" )
 		os.system( "mkdir -p " + self.dirPath + "/build" )
 
-	def _WriteTemplates( self ):
+	def _WriteTemplates( self, test = False ):
 		template = self._GenerateHeaderTemplate( )
 		file = open( self.dirPath + "/inc/%s.h"%( self.modName ), "w" )
 		file.write( template )
 		file.close( )
 
-		template = self._GenerateSourceTemplate( )
+		template = self._GenerateSourceTemplate( test )
 		file = open( self.dirPath + "/src/%s.c"%( self.modName ), "w" )
 		file.write( template )
 		file.close( )
@@ -100,38 +100,77 @@ class C_ModuleGenerator:
 
 		return template
 
-	def _GenerateSourceTemplate( self ):
-		auxTemplate = 												\
-			"""/**													\
-			\n * @file\t%s.c										\
-			\n * @author\t%s										\
-			\n * @date\t%s											\
-			\n * @brief\t??											\
-			\n */													\
-			\n 														\
-			\n/* Includes go here.	*/								\
-			\n#include <%s.h>										\
-			\n														\
-			\n/* typedefs go here.	*/								\
-			\n 														\
-			\n/* Consts go here.	*/								\
-			\n 														\
-			\n/* #defines go here.	*/								\
-			\n 														\
-			\n/* static vars go here.	*/							\
-			\n														\
-			\n/* static function declarations go here.	*/			\
-			\n 														\
-			\n/* non static function implementation go here.	*/	\
-			\n 														\
-			\n/* static function implementation go here.	*/		\
-			\n 														\
-			\n//*** end of file ***//								\
-			\n"""													\
-			%( 	self.modName, 										\
-				os.environ[ 'USER' ],								\
-				date.today(), 										\
-				self.modName )
+	def _GenerateSourceTemplate( self, test = False ):
+		auxTemplate = ''
+		if True == test:
+			auxTemplate = 												\
+				"""/**													\
+				\n * @file\t%s.c										\
+				\n * @author\t%s										\
+				\n * @date\t%s											\
+				\n * @brief\t??											\
+				\n */													\
+				\n 														\
+				\n/* Includes go here.	*/								\
+				\n#include <%s.h>										\
+				\n														\
+				\n/* typedefs go here.	*/								\
+				\n 														\
+				\n/* Consts go here.	*/								\
+				\n 														\
+				\n/* #defines go here.	*/								\
+				\n 														\
+				\n/* static vars go here.	*/							\
+				\n														\
+				\n/* static function declarations go here.	*/			\
+				\n 														\
+				\nint main( void ) {									\
+				\n 														\
+				\n\treturn 0;											\
+				\n}														\
+				\n 														\
+				\n/* non static function implementation go here.	*/	\
+				\n 														\
+				\n/* static function implementation go here.	*/		\
+				\n 														\
+				\n//*** end of file ***//								\
+				\n"""													\
+				%( 	self.modName, 										\
+					os.environ[ 'USER' ],								\
+					date.today(), 										\
+					self.modName )
+		else:
+			auxTemplate = 												\
+				"""/**													\
+				\n * @file\t%s.c										\
+				\n * @author\t%s										\
+				\n * @date\t%s											\
+				\n * @brief\t??											\
+				\n */													\
+				\n 														\
+				\n/* Includes go here.	*/								\
+				\n#include <%s.h>										\
+				\n														\
+				\n/* typedefs go here.	*/								\
+				\n 														\
+				\n/* Consts go here.	*/								\
+				\n 														\
+				\n/* #defines go here.	*/								\
+				\n 														\
+				\n/* static vars go here.	*/							\
+				\n														\
+				\n/* static function declarations go here.	*/			\
+				\n 														\
+				\n/* non static function implementation go here.	*/	\
+				\n 														\
+				\n/* static function implementation go here.	*/		\
+				\n 														\
+				\n//*** end of file ***//								\
+				\n"""													\
+				%( 	self.modName, 										\
+					os.environ[ 'USER' ],								\
+					date.today(), 										\
+					self.modName )
 
 		template = ''
 		for line in auxTemplate.splitlines( ):
