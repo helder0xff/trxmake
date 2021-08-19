@@ -40,6 +40,7 @@ def _testModuleGeneration( ):
 					'./mod1/src', './mod1/src/mod1.c',									\
 					'./mod1/build',	'./mod1/build/trxmake.json',						\
 					'./mod1/mod1_test/build/MSP432.lds',								\
+					'./mod1/mod1_test/test.py',											\
 					'./mod1/inc', './mod1/inc/mod1.h',									\
 					'./mod1/mod1_test',													\
 					'./mod1/mod1_test/src', './mod1/mod1_test/src/mod1_test.c', 		\

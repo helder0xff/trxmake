@@ -61,6 +61,35 @@ class C_ModuleGenerator:
 			file.write( template )
 			file.close( )
 
+		if True == app:
+			template = self._GenerateTestScript( )
+			file = open( self.dirPath + "/%s.py"%( "test"), "w" )
+			file.write( template )
+			file.close( )
+
+	def _GenerateTestScript( self ):
+		auxTemplate =						\
+			"""
+import sys
+
+PASS = 0
+FAIL = -1
+
+def main( ):
+	result = PASS
+
+	sys.exit( result )
+
+main( )
+			"""
+
+		template = ''
+		for line in auxTemplate.splitlines( ):
+			template += line.rstrip( )
+			template += '\n'
+
+		return template
+
 	def _GenerateLdrScriptTemplate( self ):
 		auxTemplate =						\
 			"""
