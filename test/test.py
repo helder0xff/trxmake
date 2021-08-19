@@ -54,6 +54,8 @@ def _testModuleGeneration( ):
 	result = FAIL
 	if ( expectedList == obtainedList ):
 		result = PASS
+	else:
+		print( "_testModuleGeneration failed. " )
 
 	return result
 
@@ -66,7 +68,9 @@ def _testTrxmakeInstallation( ):
 	result = FAIL
 	if True == cmp( installationFolder + "/trxmake/bin/trxmake.py", bindir + "/trxmake.py" ):
 		result = PASS
-	
+	else:
+		print( "_testTrxmakeInstallation failed. " )
+
 	os.system( "rm -rf {folder}".format( folder = installationFolder ) )
 
 	return result
@@ -76,6 +80,8 @@ def _testTrxmakeBuild( ):
 	result = FAIL
 	if True == os.path.isfile( "test/screws/screw/screw_test/build/bin/app.elf" ):
 		result = PASS
+	else:
+		print( "_testTrxmakeBuild failed. " )
 
 	return result
 
