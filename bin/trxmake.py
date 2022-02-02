@@ -6,15 +6,16 @@ import argparse
 import json
 
 class C_ModuleGenerator:
-	def __init__( self, modName = None, parentFolder = '.', platform = "HOST" ):
+	def __init__( self, modName = None, parentFolder = '.', platform = "HOST", app = False ):
 		self.modName = modName
 		self.parentFolder = parentFolder
 		self.dirPath = self.parentFolder + '/' + self.modName + '/'
 		self.platform = platform
+		self.app = app
 
 	def GenerateModule( self ):
 		self._MakeDirs( )
-		self._WriteTemplates( )
+		self._WriteTemplates( self.app )
 		self._GenerateModuleTest( )
 
 	def _GenerateModuleTest( self ):
@@ -697,10 +698,16 @@ parser.add_argument(	'-M',
 						choices = [ "True", "False" ],
 						default = "True",
 						help = "Build (Make) the thing.")
+parser.add_argument(	'-a',
+						'--app',
+						type = str,
+						choices = [ "True", "False" ],
+						default = "False",
+						help = "The module is actually an app.")						
 args = parser.parse_args( )
 def main( args ):
 	if "genmod" == args.command:
-		modGen = C_ModuleGenerator( modName = args.module, parentFolder = args.parent, platform = args.platform )
+		modGen = C_ModuleGenerator( modName = args.module, parentFolder = args.parent, platform = args.platform, app = True if args.app == 'True' else False )
 		modGen.GenerateModule( )
 	elif "build" == args.command:
 		appBuilder = Builder( build_file = args.file, platform = args.platform, buildtype =  "app" )
