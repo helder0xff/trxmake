@@ -297,7 +297,7 @@ SECTIONS {
 			\n								\
 			\n#endif /* %s_H */				\
 			\n								\
-			\n//*** end of file ***//		\
+			\n/**** end of file ****/		\
 			\n"""							\
 			%( 	self.modName, 				\
 				os.environ[ 'USER' ],		\
